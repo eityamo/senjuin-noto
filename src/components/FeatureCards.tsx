@@ -1,17 +1,19 @@
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const features = [
   {
     title: "写経・読経\n体験",
-    image: "/images/asoview_02.jpg",
+    image: `${basePath}/images/asoview_02.jpg`,
     description: "心静かに筆を運び、仏の教えに触れる",
   },
   {
     title: "イベント\n案内",
-    image: "/images/chunichi_lantern.jpg",
+    image: `${basePath}/images/chunichi_lantern.jpg`,
     description: "復興の灯・スカイランタンなど",
   },
   {
     title: "カフェ\nデモンク",
-    image: "/images/asoview_01.jpg",
+    image: `${basePath}/images/asoview_01.jpg`,
     description: "傾聴移動喫茶で心安らぐひとときを",
   },
 ];

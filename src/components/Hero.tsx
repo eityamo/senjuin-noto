@@ -1,10 +1,12 @@
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function Hero() {
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* 背景画像 */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/images/asoview_01.jpg')" }}
+        style={{ backgroundImage: `url('${basePath}/images/asoview_01.jpg')` }}
       >
         {/* オーバーレイ */}
         <div className="absolute inset-0 bg-black/40" />

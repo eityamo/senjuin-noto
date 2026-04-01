@@ -1,5 +1,7 @@
 import SectionTitle from "./SectionTitle";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function About() {
   return (
     <section className="bg-white">
@@ -10,7 +12,7 @@ export default function About() {
           {/* 写真 */}
           <div className="overflow-hidden">
             <img
-              src="/images/asoview_01.jpg"
+              src={`${basePath}/images/asoview_01.jpg`}
               alt="千手院 本堂外観"
               className="w-full h-80 md:h-96 object-cover"
               loading="lazy"

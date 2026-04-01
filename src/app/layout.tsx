@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     locale: "ja_JP",
     images: [
       {
-        url: "/images/asoview_01.jpg",
+        url: "/senjuin-noto/images/asoview_01.jpg",
         width: 1200,
         height: 630,
         alt: "千手院 本堂外観",
