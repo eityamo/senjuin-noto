@@ -12,9 +12,9 @@ const features = [
     description: "復興の灯・スカイランタンなど",
   },
   {
-    title: "カフェ\nデモンク",
+    title: "お寺\nカフェ",
     image: `${basePath}/images/asoview_01.jpg`,
-    description: "傾聴移動喫茶で心安らぐひとときを",
+    description: "誰でもどうぞ まったり時間",
   },
 ];
 
