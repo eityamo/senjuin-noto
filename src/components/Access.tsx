@@ -17,7 +17,7 @@ export default function Access() {
                 <dd className="text-text-primary">
                   〒927-0221
                   <br />
-                  石川県鳳珠郡穴水町字曽良リ106番地
+                  石川県鳳珠郡穴水町曽良106
                 </dd>
               </div>
               <div>
@@ -90,7 +90,7 @@ export default function Access() {
           {/* Google Maps */}
           <div className="h-72 md:h-96">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3200!2d136.9!3d37.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z5Y2D5omL6Zmi!5e0!3m2!1sja!2sjp!4v1"
+              src="https://maps.google.com/maps?q=%E7%9F%B3%E5%B7%9D%E7%9C%8C%E9%B3%B3%E7%8F%A0%E9%83%A1%E7%A9%B4%E6%B0%B4%E7%94%BA%E6%9B%BD%E8%89%AF106&t=&z=16&ie=UTF8&iwloc=B&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
