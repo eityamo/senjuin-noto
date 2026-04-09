@@ -27,20 +27,26 @@ export default function Hero() {
           </svg>
         </div>
 
-        {/* 山号 */}
-        <p
-          className="writing-vertical font-serif text-lg md:text-xl tracking-[0.5em] mb-4 animate-fade-in-up"
+        {/* 山号（縦書き） */}
+        <div
+          className="flex flex-col items-center font-serif text-lg md:text-xl mb-4 animate-fade-in-up leading-[1.8]"
           style={{ animationDelay: "0.4s" }}
+          aria-label="海臨山"
         >
-          海臨山
-        </p>
+          <span aria-hidden="true">海</span>
+          <span aria-hidden="true">臨</span>
+          <span aria-hidden="true">山</span>
+        </div>
 
-        {/* 寺名（大） */}
+        {/* 寺名（大・縦書き） */}
         <h1
-          className="writing-vertical font-serif text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.3em] mb-8 animate-fade-in-up"
+          className="flex flex-col items-center font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-8 animate-fade-in-up leading-[1.1]"
           style={{ animationDelay: "0.6s" }}
+          aria-label="千手院"
         >
-          千手院
+          <span aria-hidden="true">千</span>
+          <span aria-hidden="true">手</span>
+          <span aria-hidden="true">院</span>
         </h1>
 
         {/* ローマ字 */}
