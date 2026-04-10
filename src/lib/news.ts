@@ -33,20 +33,22 @@ export const newsItems: NewsItem[] = [
     category: "メディア掲載",
   },
   {
-    date: "2025年4月1日",
-    title: "ホームページを開設しました",
-    slug: "website-launch",
-  },
-  {
-    date: "2024年12月31日",
-    title: "除夜の鐘を行いました",
-    slug: "joya-no-kane-2024",
-  },
-  {
     date: "2024年10月9日",
     title: "「文化時報」に復興キャンドルナイトの記事が掲載されました",
     slug: "bunka-jiho-candle-2024",
     externalUrl: "https://note.com/bunkajiho/n/nfadc446533d4",
+    category: "メディア掲載",
+  },
+  {
+    date: "2025年8月14日",
+    title: "復興の灯 キャンドルナイト＆スカイランタンを開催しました",
+    slug: "candle-night-2025",
+  },
+  {
+    date: "2024年",
+    title: "「アソビュー!」に体験プランが掲載されました",
+    slug: "asoview-2024",
+    externalUrl: "https://www.asoview.com/base/163446/",
     category: "メディア掲載",
   },
   {
@@ -55,10 +57,8 @@ export const newsItems: NewsItem[] = [
     slug: "candle-night-2024",
   },
   {
-    date: "2024年",
-    title: "「アソビュー!」に体験プランが掲載されました",
-    slug: "asoview-2024",
-    externalUrl: "https://www.asoview.com/base/163446/",
-    category: "メディア掲載",
+    date: "2026年4月1日",
+    title: "ホームページを開設しました",
+    slug: "website-launch",
   },
 ];
