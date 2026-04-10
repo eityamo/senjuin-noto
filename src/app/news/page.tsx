@@ -67,14 +67,49 @@ export default function NewsPage() {
           <ul className="divide-y divide-gray-200 bg-white rounded-lg shadow-sm">
             {newsItems.map((item, index) => (
               <li key={index}>
-                <article className="flex flex-col md:flex-row md:items-center gap-2 md:gap-8 px-6 py-6">
-                  <time className="text-text-muted text-sm tracking-wider shrink-0">
-                    {item.date}
-                  </time>
-                  <h2 className="text-text-primary text-sm md:text-base leading-relaxed">
-                    {item.title}
-                  </h2>
-                </article>
+                {item.externalUrl ? (
+                  <a
+                    href={item.externalUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 px-6 py-6 cursor-pointer transition-opacity duration-200 hover:opacity-60"
+                  >
+                    <div className="flex items-center gap-3 shrink-0">
+                      <time className="text-text-muted text-sm tracking-wider">
+                        {item.date}
+                      </time>
+                      {item.category && (
+                        <span className="text-xs bg-temple/10 text-temple px-2 py-0.5 rounded">
+                          {item.category}
+                        </span>
+                      )}
+                    </div>
+                    <h2 className="text-text-primary text-sm md:text-base leading-relaxed flex items-center gap-1">
+                      {item.title}
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        className="shrink-0 text-text-muted"
+                        aria-hidden="true"
+                      >
+                        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+                      </svg>
+                    </h2>
+                  </a>
+                ) : (
+                  <article className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 px-6 py-6">
+                    <time className="text-text-muted text-sm tracking-wider shrink-0">
+                      {item.date}
+                    </time>
+                    <h2 className="text-text-primary text-sm md:text-base leading-relaxed">
+                      {item.title}
+                    </h2>
+                  </article>
+                )}
               </li>
             ))}
           </ul>
