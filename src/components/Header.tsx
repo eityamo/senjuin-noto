@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const navItems = [
-  { label: "ホーム", href: "#" },
-  { label: "千手院について", href: "#about" },
-  { label: "体験・活動", href: "#features" },
-  { label: "お知らせ", href: "#news" },
-  { label: "アクセス", href: "#access" },
+  { label: "ホーム", href: `${basePath}/` },
+  { label: "千手院について", href: `${basePath}/#about` },
+  { label: "体験・活動", href: `${basePath}/#features` },
+  { label: "お知らせ", href: `${basePath}/news` },
+  { label: "アクセス", href: `${basePath}/#access` },
 ];
 
 export default function Header() {
