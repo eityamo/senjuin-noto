@@ -61,4 +61,16 @@ export const newsItems: NewsItem[] = [
     title: "ホームページを開設しました",
     slug: "website-launch",
   },
+  {
+    date: "2026年4月1日",
+    title: "TikTokを始めました",
+    slug: "tiktok-start",
+    externalUrl: "https://www.tiktok.com/@noto_morimoto",
+  },
+  {
+    date: "2026年4月1日",
+    title: "Instagramを始めました",
+    slug: "instagram-start",
+    externalUrl: "https://www.instagram.com/noto_morimoto/reels/",
+  },
 ];
