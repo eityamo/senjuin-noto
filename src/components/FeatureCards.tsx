@@ -5,16 +5,19 @@ const features = [
     title: "写経・読経\n体験",
     image: `${basePath}/images/asoview_02.jpg`,
     description: "心静かに筆を運び、仏の教えに触れる",
+    href: `${basePath}/#features`,
   },
   {
     title: "イベント\n案内",
     image: `${basePath}/images/chunichi_lantern.jpg`,
     description: "復興の灯・スカイランタンなど",
+    href: `${basePath}/events`,
   },
   {
     title: "お寺\nカフェ",
     image: `${basePath}/images/asoview_01.jpg`,
     description: "誰でもどうぞ まったり時間",
+    href: `${basePath}/#features`,
   },
 ];
 
@@ -26,7 +29,7 @@ export default function FeatureCards() {
           {features.map((feature, index) => (
             <a
               key={index}
-              href="#"
+              href={feature.href}
               className="group relative overflow-hidden block h-72 md:h-96 cursor-pointer"
             >
               {/* 背景画像 */}
