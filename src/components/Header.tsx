@@ -8,6 +8,7 @@ const navItems = [
   { label: "ホーム", href: `${basePath}/` },
   { label: "千手院について", href: `${basePath}/#about` },
   { label: "体験・活動", href: `${basePath}/#features` },
+  { label: "イベント", href: `${basePath}/events` },
   { label: "お知らせ", href: `${basePath}/news` },
   { label: "アクセス", href: `${basePath}/#access` },
 ];
