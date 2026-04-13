@@ -23,9 +23,6 @@ const gallery = [
   { src: "bontou-09.jpg", alt: "赤いプロジェクションマッピング" },
   { src: "bontou-03.jpg", alt: "境内のライトアップ" },
   { src: "bontou-17.jpg", alt: "夜空に浮かぶスカイランタン" },
-  { src: "bontou-18.jpg", alt: "曽良の夜空を飛ぶスカイランタン" },
-  { src: "bontou-12-jomon.jpg", alt: "縄文焼きランプシェード制作" },
-  { src: "bontou-13-jomon.jpg", alt: "縄文焼きの灯り" },
 ];
 
 const programs = [
