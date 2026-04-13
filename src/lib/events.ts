@@ -17,7 +17,7 @@ export const events: EventItem[] = [
     location: "千手院 境内",
     description:
       "能登半島地震からの復興を祈り、境内に800本のロウソクを灯し、スカイランタンを夜空へ放つ夏の夜のイベント。",
-    image: `${basePath}/images/events/bontou-11.jpg`,
+    image: `${basePath}/images/fukkou-no-tomoshibi/bontou-11.jpg`,
   },
   {
     title: "能による祈祷とワークショップ",

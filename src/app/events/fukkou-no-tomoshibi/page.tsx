@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
-const img = (name: string) => `${basePath}/images/events/${name}`;
+const img = (name: string) => `${basePath}/images/fukkou-no-tomoshibi/${name}`;
 
 const gallery = [
   { src: "bontou-04.jpg", alt: "NOTO MOTTO COME ONの火文字" },
