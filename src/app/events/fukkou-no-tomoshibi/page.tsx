@@ -13,6 +13,21 @@ export const metadata: Metadata = {
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 const img = (name: string) => `${basePath}/images/events/${name}`;
 
+const gallery = [
+  { src: "bontou-04.jpg", alt: "NOTO MOTTO COME ONの火文字" },
+  { src: "bontou-02.jpg", alt: "ロウソクの参道" },
+  { src: "bontou-06.jpg", alt: "灯りが並ぶ境内" },
+  { src: "bontou-05.jpg", alt: "本堂での追悼法要" },
+  { src: "bontou-01.jpg", alt: "プロジェクションマッピング" },
+  { src: "bontou-07.jpg", alt: "金色のプロジェクションマッピング" },
+  { src: "bontou-09.jpg", alt: "赤いプロジェクションマッピング" },
+  { src: "bontou-03.jpg", alt: "境内のライトアップ" },
+  { src: "bontou-17.jpg", alt: "夜空に浮かぶスカイランタン" },
+  { src: "bontou-18.jpg", alt: "曽良の夜空を飛ぶスカイランタン" },
+  { src: "bontou-12-jomon.jpg", alt: "縄文焼きランプシェード制作" },
+  { src: "bontou-13-jomon.jpg", alt: "縄文焼きの灯り" },
+];
+
 const programs = [
   {
     title: "キャンドル点灯（800本）",
@@ -162,6 +177,28 @@ export default function FukkouNoTomoshibiPage() {
                   <p className="text-text-muted text-sm leading-relaxed">
                     {program.description}
                   </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* フォトギャラリー */}
+          <div className="mb-12">
+            <h2 className="font-serif text-xl md:text-2xl text-text-primary mb-6 text-center">
+              フォトギャラリー
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {gallery.map((photo, index) => (
+                <div
+                  key={index}
+                  className="aspect-[4/3] overflow-hidden rounded-lg"
+                >
+                  <img
+                    src={img(photo.src)}
+                    alt={photo.alt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
               ))}
             </div>
