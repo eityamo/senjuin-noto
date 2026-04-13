@@ -18,6 +18,27 @@ export default function Header() {
 
   return (
     <>
+      {/* トップへ（菱形ロゴ） */}
+      <a
+        href={`${basePath}/`}
+        className="fixed top-0 left-0 z-50 flex h-16 w-16 items-center justify-center bg-temple text-white transition-colors duration-200 hover:bg-temple-dark"
+        aria-label="トップページへ"
+      >
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 48 48"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1"
+          className="opacity-90"
+          aria-hidden
+        >
+          <path d="M24 4 L44 24 L24 44 L4 24 Z" />
+          <path d="M24 12 L36 24 L24 36 L12 24 Z" />
+        </svg>
+      </a>
+
       {/* ハンバーガーボタン */}
       <button
         onClick={() => setIsOpen(!isOpen)}
