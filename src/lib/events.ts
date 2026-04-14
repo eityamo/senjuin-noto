@@ -26,6 +26,6 @@ export const events: EventItem[] = [
     location: "千手院 本堂",
     description:
       "日本の伝統芸能「能」を通じた祈祷と、能の所作を体験するワークショップ。",
-    image: `${basePath}/images/asoview_01.jpg`,
+    image: `${basePath}/images/noh-workshop/S__10149922.jpg`,
   },
 ];
