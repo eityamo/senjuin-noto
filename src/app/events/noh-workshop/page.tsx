@@ -10,6 +10,21 @@ export const metadata: Metadata = {
     "千手院で開催される能の祈祷とワークショップ。日本の伝統芸能「能」を通じた祈りの体験と、能の所作を学ぶワークショップ。",
 };
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+const img = (name: string) => `${basePath}/images/noh-workshop/${name}`;
+
+const gallery = [
+  { src: "S__10149922.jpg", alt: "能面を手に舞台に立つ能楽師" },
+  { src: "LINE_ALBUM_20250628_250628_3.jpg", alt: "生徒たちの前で能面を紹介する能楽師" },
+  { src: "LINE_ALBUM_20250628_250628_4.jpg", alt: "地域の方々へのワークショップ講義" },
+  { src: "LINE_ALBUM_20250628_250628_5.jpg", alt: "能の資料を解説する能楽師" },
+  { src: "LINE_ALBUM_20250628_250628_9.jpg", alt: "能装束の着付け体験" },
+  { src: "LINE_ALBUM_20250628_250628_18.jpg", alt: "能装束を纏う参加者" },
+  { src: "LINE_ALBUM_20250628_250628_15.jpg", alt: "能装束を着て笑顔の参加者" },
+  { src: "LINE_ALBUM_20250628_250628_23.jpg", alt: "能面を体験する参加者" },
+  { src: "S__10149920.jpg", alt: "本堂での集合写真" },
+];
+
 const programs = [
   {
     title: "能による奉納・祈祷",
@@ -35,8 +50,12 @@ export default function NohWorkshopPage() {
       <SideIcons />
 
       {/* メインビジュアル */}
-      <section className="relative h-[50vh] md:h-[60vh] overflow-hidden bg-temple">
-        <div className="absolute inset-0 bg-black/20" />
+      <section className="relative h-[50vh] md:h-[60vh] overflow-hidden">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url('${img("S__10149920.jpg")}')` }}
+        />
+        <div className="absolute inset-0 bg-black/30" />
         <div className="relative z-10 h-full flex flex-col items-center justify-center text-white px-6 text-center">
           <p className="text-xs tracking-[0.5em] text-white/60 mb-4">
             Event
@@ -140,6 +159,28 @@ export default function NohWorkshopPage() {
                   <p className="text-text-muted text-sm leading-relaxed">
                     {program.description}
                   </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* フォトギャラリー */}
+          <div className="mb-12">
+            <h2 className="font-serif text-xl md:text-2xl text-text-primary mb-6 text-center">
+              フォトギャラリー
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {gallery.map((photo, index) => (
+                <div
+                  key={index}
+                  className="aspect-[4/3] overflow-hidden rounded-lg"
+                >
+                  <img
+                    src={img(photo.src)}
+                    alt={photo.alt}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
                 </div>
               ))}
             </div>
