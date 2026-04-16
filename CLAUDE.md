@@ -16,6 +16,7 @@
 - `npm run dev` — 開発サーバー起動（localhost:3000）
 - `npm run build` — 静的ビルド（`/out` 生成）
 - `npm run lint` — ESLint チェック
+- `npm run review` — Claude API による未コミット変更のコードレビュー（後述）
 
 ## ディレクトリ構造
 
@@ -127,3 +128,47 @@ docs/
 2. 各サブエージェントの出力ファイルパスを次のエージェントに渡す
 3. 合格/不合格の判定に基づき、次のアクションを決定する
 4. ユーザーへの進捗報告を行う
+
+---
+
+## コードレビュー CLI（Claude API 直接呼び出し）
+
+サブエージェントとは独立した、ローカル実行のコードレビューツール。コミット前のセルフレビュー用。
+
+### セットアップ
+
+1. `.env.local.example` をコピーして `.env.local` を作成
+2. `ANTHROPIC_API_KEY` に Anthropic Console で発行したキーをセット
+3. `npm install` 済みであることを確認
+
+### 使い方
+
+```bash
+npm run review
+```
+
+- `git diff HEAD`（未コミット変更）の `.ts` `.tsx` `.css` `.json` `.mjs` `.js` を Sonnet 4.5 にレビューさせる
+- ファイル単位で API を呼び出すので、大きな変更にも対応
+- 結果はターミナルに色付きで表示（`critical` / `warning` / `info` の3段階）
+- exit code は常に 0（マージブロックはしない、参考情報扱い）
+
+### スクリプト構成
+
+```
+scripts/
+├── review.ts          # CLI エントリポイント
+└── lib/
+    ├── diff.ts        # git diff 取得・パース
+    ├── anthropic.ts   # Claude API クライアントラッパー
+    ├── prompt.ts      # システムプロンプト構築
+    └── render.ts      # ターミナル色付き出力
+```
+
+### Evaluator との違い
+
+| | Evaluator（サブエージェント） | コードレビュー CLI |
+|---|---|---|
+| 検証方式 | Playwright で実機ブラウザ動作確認 | Claude API による静的解析 |
+| 対象 | 仕様書とビルド済みUI | git diff の変更コード |
+| 実行 | パイプラインから自動 | 人間が `npm run review` |
+| 判定 | 閾値で合格/不合格 | 警告のみ（ブロックなし） |
