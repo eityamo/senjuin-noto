@@ -16,7 +16,6 @@
 - `npm run dev` — 開発サーバー起動（localhost:3000）
 - `npm run build` — 静的ビルド（`/out` 生成）
 - `npm run lint` — ESLint チェック
-- `npm run review` — Claude API による未コミット変更のコードレビュー（後述）
 
 ## ディレクトリ構造
 
@@ -56,7 +55,8 @@ docs/
 |-------------|------|------|------|
 | Planner | 要望を仕様書に変換 | ユーザーのプロンプト | `docs/specs/{name}.md` |
 | Generator | スプリント単位で実装 | 仕様書 + スプリント番号 | コード + `docs/reports/sprint-{N}-self-eval.md` |
-| Evaluator | 実装をブラウザで検証 | 自己評価レポート + 仕様書 | `docs/reports/sprint-{N}-evaluation.md` |
+| Evaluator（ブラウザ検証モード） | 実装をブラウザで検証 | 自己評価レポート + 仕様書 | `docs/reports/sprint-{N}-evaluation.md` |
+| Evaluator（静的レビューモード） | コード差分を静的レビュー | `git diff HEAD` または指定ファイル | チャットに直接表示（ファイル保存なし） |
 
 ### ファイル規約
 
@@ -105,12 +105,25 @@ docs/
 
 #### Evaluator 固有ルール
 
+Evaluator は **ブラウザ検証モード** と **静的レビューモード** の2つのモードを持つ。
+
+**ブラウザ検証モード**（パイプライン内の品質ゲート）:
+
 - **必ずブラウザで実際に操作して確認する**（Playwright MCP を使用）
 - 検証前に `npm run dev` でサーバーを起動し、`http://localhost:3000` にアクセスする
 - レスポンシブは3サイズ（375x667, 768x1024, 1440x900）で確認する
 - 閾値（3/5）を1つでも下回れば不合格。例外なし
 - バグには再現手順を必ず付ける
 - 出力先: `docs/reports/sprint-{N}-evaluation.md`
+
+**静的レビューモード**（参考情報、パイプラインをブロックしない）:
+
+- `/review` コマンドまたは自然言語（「レビューして」等）で呼び出す
+- 対象: `git diff HEAD`（既定）または引数でファイル/ディレクトリを指定
+- レビュー結果はチャットに直接表示する（ファイル保存なし）
+- 合格/不合格の判定は行わない（参考情報のみ）
+- ブラウザ操作・UI検証は行わない
+- Message API 不使用、サブスクリプション内で完結
 
 ### 不合格時のフロー
 
@@ -131,44 +144,20 @@ docs/
 
 ---
 
-## コードレビュー CLI（Claude API 直接呼び出し）
+## 静的コードレビュー（Evaluator 静的レビューモード）
 
-サブエージェントとは独立した、ローカル実行のコードレビューツール。コミット前のセルフレビュー用。
-
-### セットアップ
-
-1. `.env.local.example` をコピーして `.env.local` を作成
-2. `ANTHROPIC_API_KEY` に Anthropic Console で発行したキーをセット
-3. `npm install` 済みであることを確認
+Evaluator サブエージェントの「静的レビューモード」で、コミット前のセルフレビューを行える。Anthropic Message API の従量課金は不要で、Claude Code サブスクリプション内で完結する。
 
 ### 使い方
 
-```bash
-npm run review
-```
+- `/review` コマンド — `git diff HEAD` の変更をレビュー
+- `/review src/app/page.tsx` — 指定ファイルをレビュー
+- `/review src/app/` — 指定ディレクトリ配下をレビュー
+- 自然言語（「レビューして」「コードレビューお願い」等）でも呼び出し可能
 
-- `git diff HEAD`（未コミット変更）の `.ts` `.tsx` `.css` `.json` `.mjs` `.js` を Sonnet 4.5 にレビューさせる
-- ファイル単位で API を呼び出すので、大きな変更にも対応
-- 結果はターミナルに色付きで表示（`critical` / `warning` / `info` の3段階）
-- exit code は常に 0（マージブロックはしない、参考情報扱い）
+### 特徴
 
-### スクリプト構成
-
-```
-scripts/
-├── review.ts          # CLI エントリポイント
-└── lib/
-    ├── diff.ts        # git diff 取得・パース
-    ├── anthropic.ts   # Claude API クライアントラッパー
-    ├── prompt.ts      # システムプロンプト構築
-    └── render.ts      # ターミナル色付き出力
-```
-
-### Evaluator との違い
-
-| | Evaluator（サブエージェント） | コードレビュー CLI |
-|---|---|---|
-| 検証方式 | Playwright で実機ブラウザ動作確認 | Claude API による静的解析 |
-| 対象 | 仕様書とビルド済みUI | git diff の変更コード |
-| 実行 | パイプラインから自動 | 人間が `npm run review` |
-| 判定 | 閾値で合格/不合格 | 警告のみ（ブロックなし） |
+- 対象: `git diff HEAD`（既定）または引数でファイル/ディレクトリを指定
+- 出力: チャットに直接表示（ファイル保存なし）
+- 判定: 合格/不合格の判定は行わない（参考情報のみ）
+- severity: `critical` / `warning` / `info` の3段階
