@@ -10,6 +10,14 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
   {
+    date: "2026年4月29日",
+    title: "「朝日新聞デジタル」に記事が掲載されました",
+    slug: "asahi-digital-2026-04",
+    externalUrl:
+      "https://digital.asahi.com/articles/ASV4X3C9GV4XPJLB00KM.html",
+    category: "メディア掲載",
+  },
+  {
     date: "2026年1月28日",
     title: "「ほっと石川旅ねっと」に千手院が紹介されました",
     slug: "hot-ishikawa-2026",
