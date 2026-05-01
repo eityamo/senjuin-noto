@@ -10,6 +10,14 @@ export type NewsItem = {
 
 export const newsItems: NewsItem[] = [
   {
+    date: "2026年5月2日",
+    title: "「いしかわのWa!」に希望の植樹イベントが掲載されました",
+    slug: "ishikawa-no-wa-shokuju-2026",
+    externalUrl:
+      "https://app.ishikawanowa.pref.ishikawa.lg.jp/program-list/program-list002/detail/pgi0000000000000180",
+    category: "メディア掲載",
+  },
+  {
     date: "2026年4月29日",
     title: "「朝日新聞デジタル」に記事が掲載されました",
     slug: "asahi-digital-2026-04",
