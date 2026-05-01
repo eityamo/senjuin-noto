@@ -10,6 +10,7 @@ const navItems = [
   { label: "体験・活動", href: `${basePath}/#features` },
   { label: "イベント", href: `${basePath}/events` },
   { label: "お知らせ", href: `${basePath}/news` },
+  { label: "縁の下", href: `${basePath}/members` },
   { label: "アクセス", href: `${basePath}/#access` },
 ];
 
