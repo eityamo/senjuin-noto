@@ -1,25 +1,6 @@
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import NoticeBanner from "@/components/NoticeBanner";
-import About from "@/components/About";
-import FeatureCards from "@/components/FeatureCards";
-import News from "@/components/News";
-import Access from "@/components/Access";
-import Footer from "@/components/Footer";
-import SideIcons from "@/components/SideIcons";
+import ja from "@/i18n/dictionaries/ja";
+import HomePage from "@/components/pages/HomePage";
 
 export default function Home() {
-  return (
-    <main>
-      <Header />
-      <SideIcons />
-      <Hero />
-      <NoticeBanner />
-      <About />
-      <FeatureCards />
-      <News />
-      <Access />
-      <Footer />
-    </main>
-  );
+  return <HomePage locale="ja" dict={ja} />;
 }
