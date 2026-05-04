@@ -1,6 +1,22 @@
+import type { Dictionary } from "@/i18n/dictionaries/ja";
+
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-export default function Hero() {
+interface HeroProps {
+  dict?: Dictionary;
+}
+
+export default function Hero({ dict }: HeroProps) {
+  const t = dict?.hero ?? {
+    kairinzan: "海臨山",
+    kairinzanChars: ["海", "臨", "山"],
+    senjuin: "千手院",
+    senjuinChars: ["千", "手", "院"],
+    kairinzanRomaji: "Kairinzan",
+    senjuinRomaji: "Senjuin",
+  };
+  const sect = dict?.common.sect ?? "高野山真言宗";
+
   return (
     <section className="relative h-screen w-full overflow-hidden">
       {/* 背景画像 */}
@@ -16,7 +32,7 @@ export default function Hero() {
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-white">
         {/* 宗派名 */}
         <p className="text-sm md:text-base tracking-[0.5em] mb-6 animate-fade-in-up font-light">
-          高野山真言宗
+          {sect}
         </p>
 
         {/* 装飾 */}
@@ -31,31 +47,31 @@ export default function Hero() {
         <div
           className="flex flex-col items-center font-serif text-lg md:text-xl mb-4 animate-fade-in-up leading-[1.8]"
           style={{ animationDelay: "0.4s" }}
-          aria-label="海臨山"
+          aria-label={t.kairinzan}
         >
-          <span aria-hidden="true">海</span>
-          <span aria-hidden="true">臨</span>
-          <span aria-hidden="true">山</span>
+          {t.kairinzanChars.map((char, i) => (
+            <span key={i} aria-hidden="true">{char}</span>
+          ))}
         </div>
 
         {/* 寺名（大・縦書き） */}
         <h1
           className="flex flex-col items-center font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-8 animate-fade-in-up leading-[1.1]"
           style={{ animationDelay: "0.6s" }}
-          aria-label="千手院"
+          aria-label={t.senjuin}
         >
-          <span aria-hidden="true">千</span>
-          <span aria-hidden="true">手</span>
-          <span aria-hidden="true">院</span>
+          {t.senjuinChars.map((char, i) => (
+            <span key={i} aria-hidden="true">{char}</span>
+          ))}
         </h1>
 
         {/* ローマ字 */}
         <div className="animate-fade-in-up" style={{ animationDelay: "0.8s" }}>
           <p className="text-xs tracking-[0.3em] text-white/80 font-light">
-            Kairinzan
+            {t.kairinzanRomaji}
           </p>
           <p className="text-base md:text-lg tracking-[0.2em] font-light">
-            Senjuin
+            {t.senjuinRomaji}
           </p>
         </div>
 

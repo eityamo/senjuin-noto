@@ -1,4 +1,15 @@
-export default function Footer() {
+import type { Dictionary } from "@/i18n/dictionaries/ja";
+
+interface FooterProps {
+  dict?: Dictionary;
+}
+
+export default function Footer({ dict }: FooterProps) {
+  const sect = dict?.common.sect ?? "高野山真言宗";
+  const mountainName = dict?.common.mountainName ?? "海臨山";
+  const siteName = dict?.common.siteName ?? "千手院";
+  const copyright = dict?.common.copyright ?? "海臨山 千手院";
+
   return (
     <footer className="relative bg-temple text-white overflow-hidden">
       {/* 寺院屋根風SVGシルエット */}
@@ -20,7 +31,7 @@ export default function Footer() {
       {/* 背景に薄く寺名 */}
       <div className="absolute inset-0 flex items-center justify-center opacity-5 pointer-events-none">
         <span className="font-serif text-[12rem] md:text-[20rem] tracking-wider">
-          千手院
+          {siteName}
         </span>
       </div>
 
@@ -28,7 +39,7 @@ export default function Footer() {
       <div className="relative z-10 pt-32 pb-12 px-6 text-center">
         {/* 宗派 */}
         <p className="text-sm tracking-[0.5em] text-white/60 mb-4">
-          高野山真言宗
+          {sect}
         </p>
 
         {/* 装飾 */}
@@ -40,11 +51,11 @@ export default function Footer() {
         </div>
 
         {/* 山号 */}
-        <p className="font-serif text-lg tracking-[0.3em] mb-2">海臨山</p>
+        <p className="font-serif text-lg tracking-[0.3em] mb-2">{mountainName}</p>
 
         {/* 寺名 */}
         <h2 className="font-serif text-4xl md:text-5xl tracking-[0.2em] mb-8">
-          千手院
+          {siteName}
         </h2>
 
         {/* SNSアイコン */}
@@ -88,7 +99,7 @@ export default function Footer() {
 
         {/* コピーライト */}
         <p className="text-xs text-white/40 tracking-wider">
-          &copy; {new Date().getFullYear()} 海臨山 千手院. All rights reserved.
+          &copy; {new Date().getFullYear()} {copyright}. All rights reserved.
         </p>
       </div>
     </footer>

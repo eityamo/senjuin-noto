@@ -1,41 +1,48 @@
+import type { Dictionary } from "@/i18n/dictionaries/ja";
+import type { Locale } from "@/i18n/config";
+import { localePath } from "@/i18n/utils";
+
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-const features = [
-  {
-    title: "写経・読経\n体験",
-    image: `${basePath}/images/asoview_02.jpg`,
-    description: "心静かに筆を運び、仏の教えに触れる",
-    href: `${basePath}/#features`,
-  },
-  {
-    title: "イベント\n案内",
-    image: `${basePath}/images/chunichi_lantern.jpg`,
-    description: "復興の灯・スカイランタンなど",
-    href: `${basePath}/events`,
-  },
-  {
-    title: "お寺\nカフェ",
-    image: `${basePath}/images/asoview_01.jpg`,
-    description: "誰でもどうぞ まったり時間",
-    href: `${basePath}/#features`,
-  },
+const featureImages = [
+  `${basePath}/images/asoview_02.jpg`,
+  `${basePath}/images/chunichi_lantern.jpg`,
+  `${basePath}/images/asoview_01.jpg`,
 ];
 
-export default function FeatureCards() {
+const featureHrefs = (locale: Locale) => [
+  localePath(locale, "/#features"),
+  localePath(locale, "/events"),
+  localePath(locale, "/#features"),
+];
+
+interface FeatureCardsProps {
+  locale?: Locale;
+  dict?: Dictionary;
+}
+
+export default function FeatureCards({ locale = "ja", dict }: FeatureCardsProps) {
+  const items = dict?.featureCards.items ?? [
+    { title: "写経・読経\n体験", description: "心静かに筆を運び、仏の教えに触れる" },
+    { title: "イベント\n案内", description: "復興の灯・スカイランタンなど" },
+    { title: "お寺\nカフェ", description: "誰でもどうぞ まったり時間" },
+  ];
+  const hrefs = featureHrefs(locale);
+
   return (
     <section id="features" className="bg-washi py-16 md:py-24 px-6">
       <div className="max-w-5xl mx-auto">
         <div className="grid md:grid-cols-3 gap-6">
-          {features.map((feature, index) => (
+          {items.map((feature, index) => (
             <a
               key={index}
-              href={feature.href}
+              href={hrefs[index]}
               className="group relative overflow-hidden block h-72 md:h-96 cursor-pointer"
             >
               {/* 背景画像 */}
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                style={{ backgroundImage: `url('${feature.image}')` }}
+                style={{ backgroundImage: `url('${featureImages[index]}')` }}
               />
               {/* オーバーレイ */}
               <div className="absolute inset-0 bg-black/30 transition-colors duration-300 group-hover:bg-black/50" />

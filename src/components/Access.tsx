@@ -1,9 +1,28 @@
 import SectionTitle from "./SectionTitle";
+import type { Dictionary } from "@/i18n/dictionaries/ja";
 
-export default function Access() {
+interface AccessProps {
+  dict?: Dictionary;
+}
+
+export default function Access({ dict }: AccessProps) {
+  const t = dict?.access ?? {
+    sectionTitle: "アクセス",
+    sectionEnglish: "Access",
+    addressLabel: "所在地",
+    address: "〒927-0221\n石川県鳳珠郡穴水町曽良106",
+    sectLabel: "宗派",
+    sectValue: "高野山真言宗",
+    transitLabel: "交通",
+    transitValue: "のと鉄道 穴水駅より車で約30分",
+    contactLabel: "お問い合わせ",
+    mapTitle: "千手院 地図",
+  };
+  const contactLine = dict?.common.contactLine ?? "LINEで問い合わせる";
+
   return (
     <section className="bg-washi">
-      <SectionTitle japanese="アクセス" english="Access" id="access" />
+      <SectionTitle japanese={t.sectionTitle} english={t.sectionEnglish} id="access" />
 
       <div className="max-w-5xl mx-auto px-6 pb-20">
         <div className="grid md:grid-cols-2 gap-10">
@@ -12,31 +31,29 @@ export default function Access() {
             <dl className="space-y-4 text-sm md:text-base">
               <div>
                 <dt className="text-text-muted text-xs tracking-widest mb-1">
-                  所在地
+                  {t.addressLabel}
                 </dt>
-                <dd className="text-text-primary">
-                  〒927-0221
-                  <br />
-                  石川県鳳珠郡穴水町曽良106
+                <dd className="text-text-primary whitespace-pre-line">
+                  {t.address}
                 </dd>
               </div>
               <div>
                 <dt className="text-text-muted text-xs tracking-widest mb-1">
-                  宗派
+                  {t.sectLabel}
                 </dt>
-                <dd className="text-text-primary">高野山真言宗</dd>
+                <dd className="text-text-primary">{t.sectValue}</dd>
               </div>
               <div>
                 <dt className="text-text-muted text-xs tracking-widest mb-1">
-                  交通
+                  {t.transitLabel}
                 </dt>
                 <dd className="text-text-primary">
-                  のと鉄道 穴水駅より車で約30分
+                  {t.transitValue}
                 </dd>
               </div>
               <div>
                 <dt className="text-text-muted text-xs tracking-widest mb-1">
-                  お問い合わせ
+                  {t.contactLabel}
                 </dt>
                 <dd className="text-text-primary space-y-2">
                   <div className="flex items-center gap-2">
@@ -79,7 +96,7 @@ export default function Access() {
                       rel="noopener noreferrer"
                       className="underline underline-offset-4 decoration-temple/40 hover:decoration-temple transition-colors"
                     >
-                      LINEで問い合わせる
+                      {contactLine}
                     </a>
                   </div>
                 </dd>
@@ -97,7 +114,7 @@ export default function Access() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="千手院 地図"
+              title={t.mapTitle}
               className="w-full h-full"
             />
           </div>

@@ -1,29 +1,49 @@
 "use client";
 
 import { useState } from "react";
+import type { Dictionary } from "@/i18n/dictionaries/ja";
+import type { Locale } from "@/i18n/config";
+import { localePath } from "@/i18n/utils";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+interface HeaderProps {
+  locale?: Locale;
+  dict?: Dictionary;
+  currentPath?: string;
+}
 
-const navItems = [
-  { label: "ホーム", href: `${basePath}/` },
-  { label: "千手院について", href: `${basePath}/#about` },
-  { label: "体験・活動", href: `${basePath}/#features` },
-  { label: "イベント", href: `${basePath}/events` },
-  { label: "お知らせ", href: `${basePath}/news` },
-  { label: "縁の下", href: `${basePath}/members` },
-  { label: "アクセス", href: `${basePath}/#access` },
-];
-
-export default function Header() {
+export default function Header({ locale = "ja", dict, currentPath = "/" }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+
+  const t = dict?.nav ?? {
+    home: "ホーム",
+    about: "千手院について",
+    features: "体験・活動",
+    events: "イベント",
+    news: "お知らせ",
+    members: "縁の下",
+    access: "アクセス",
+    openMenu: "メニューを開く",
+    goToTop: "トップページへ",
+  };
+
+  const navItems = [
+    { label: t.home, href: localePath(locale, "/") },
+    { label: t.about, href: localePath(locale, "/#about") },
+    { label: t.features, href: localePath(locale, "/#features") },
+    { label: t.events, href: localePath(locale, "/events") },
+    { label: t.news, href: localePath(locale, "/news") },
+    { label: t.members, href: localePath(locale, "/members") },
+    { label: t.access, href: localePath(locale, "/#access") },
+  ];
 
   return (
     <>
       {/* トップへ（菱形ロゴ） */}
       <a
-        href={`${basePath}/`}
+        href={localePath(locale, "/")}
         className="fixed top-0 left-0 z-50 flex h-16 w-16 items-center justify-center bg-temple text-white transition-colors duration-200 hover:bg-temple-dark"
-        aria-label="トップページへ"
+        aria-label={t.goToTop}
       >
         <svg
           width="28"
@@ -44,7 +64,7 @@ export default function Header() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed top-0 right-0 z-50 w-16 h-16 bg-temple flex items-center justify-center cursor-pointer transition-colors duration-200 hover:bg-temple-dark"
-        aria-label="メニューを開く"
+        aria-label={t.openMenu}
         aria-expanded={isOpen}
       >
         <div className="flex flex-col gap-1.5">
@@ -78,6 +98,11 @@ export default function Header() {
               </li>
             ))}
           </ul>
+
+          {/* 言語切り替え */}
+          <div className="mt-10">
+            <LanguageSwitcher locale={locale} currentPath={currentPath} />
+          </div>
         </nav>
       </div>
     </>

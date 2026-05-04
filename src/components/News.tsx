@@ -1,11 +1,24 @@
 import SectionTitle from "./SectionTitle";
 import { newsItems } from "@/lib/news";
-import { BASE_PATH } from "@/lib/constants";
+import type { Dictionary } from "@/i18n/dictionaries/ja";
+import type { Locale } from "@/i18n/config";
+import { localePath } from "@/i18n/utils";
 
-export default function News() {
+interface NewsProps {
+  locale?: Locale;
+  dict?: Dictionary;
+}
+
+export default function News({ locale = "ja", dict }: NewsProps) {
+  const t = dict?.news ?? {
+    sectionTitle: "お知らせ",
+    sectionEnglish: "News",
+  };
+  const viewAllLabel = dict?.common.viewAllNews ?? "お知らせ一覧へ";
+
   return (
     <section className="bg-white">
-      <SectionTitle japanese="お知らせ" english="News" id="news" />
+      <SectionTitle japanese={t.sectionTitle} english={t.sectionEnglish} id="news" />
 
       <div className="max-w-3xl mx-auto px-6 pb-20">
         <ul className="divide-y divide-gray-200">
@@ -61,13 +74,13 @@ export default function News() {
         {/* お知らせ一覧ボタン */}
         <div className="mt-10 text-center">
           <a
-            href={`${BASE_PATH}/news`}
+            href={localePath(locale, "/news")}
             className="inline-flex items-center gap-3 border border-text-primary px-8 py-3 text-sm tracking-widest cursor-pointer transition-all duration-200 hover:bg-text-primary hover:text-white"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
-            お知らせ一覧へ
+            {viewAllLabel}
           </a>
         </div>
       </div>
