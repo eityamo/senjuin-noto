@@ -43,6 +43,13 @@ export const metadata: Metadata = {
     description:
       "能登半島・穴水町曽良に佇む高野山真言宗の寺院。穏やかな湾を臨む絶景の地で、写経・読経・精進料理の体験ができます。",
   },
+  alternates: {
+    languages: {
+      ja: `${SITE_URL}/`,
+      en: `${SITE_URL}/en`,
+      zh: `${SITE_URL}/zh`,
+    },
+  },
 };
 
 export default function RootLayout({
