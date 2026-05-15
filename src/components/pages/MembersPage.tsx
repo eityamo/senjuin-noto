@@ -70,7 +70,7 @@ export default function MembersPage({ locale, dict }: MembersPageProps) {
                 className="bg-white rounded-lg shadow-sm overflow-hidden"
               >
                 {/* 写真 */}
-                <div className="aspect-square bg-temple/10 flex items-center justify-center overflow-hidden">
+                <div className="aspect-square flex items-center justify-center overflow-hidden relative">
                   {member.image ? (
                     <div
                       className="w-full h-full bg-cover bg-center"
@@ -93,17 +93,17 @@ export default function MembersPage({ locale, dict }: MembersPageProps) {
                 </div>
 
                 {/* 情報 */}
-                <div className="p-6">
-                  <h2 className="font-serif text-lg text-text-primary tracking-wider">
+                <div className="p-5">
+                  <h2 className="font-serif text-lg text-text-primary tracking-wider border-b-2" style={{ borderColor: member.color }}>
                     {member.name}
                   </h2>
-                  <p className="mt-1 text-sm text-temple font-medium">
+                  <p className="mt-3 text-sm text-temple font-medium">
                     {member.role}
                   </p>
                   <p className="mt-0.5 text-xs text-text-muted">
                     {member.title}
                   </p>
-                  <p className="mt-4 text-sm text-text-muted leading-relaxed">
+                  <p className="mt-2 text-sm text-text-muted leading-relaxed">
                     {member.comment}
                   </p>
                 </div>
