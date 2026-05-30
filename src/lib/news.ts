@@ -26,12 +26,34 @@ export const newsItems: NewsItem[] = [
     category: "メディア掲載",
   },
   {
+    date: "2026年4月1日",
+    title: "ホームページを開設しました",
+    slug: "website-launch",
+  },
+  {
+    date: "2026年4月1日",
+    title: "TikTokを始めました",
+    slug: "tiktok-start",
+    externalUrl: "https://www.tiktok.com/@noto_morimoto",
+  },
+  {
+    date: "2026年4月1日",
+    title: "Instagramを始めました",
+    slug: "instagram-start",
+    externalUrl: "https://www.instagram.com/noto_morimoto/reels/",
+  },
+  {
     date: "2026年1月28日",
     title: "「ほっと石川旅ねっと」に千手院が紹介されました",
     slug: "hot-ishikawa-2026",
     externalUrl:
       "https://www.hot-ishikawa.jp/blog/detail_697.html#10804",
     category: "メディア掲載",
+  },
+  {
+    date: "2025年8月14日",
+    title: "復興の灯 キャンドルナイト＆スカイランタンを開催しました",
+    slug: "candle-night-2025",
   },
   {
     date: "2025年4月1日",
@@ -56,9 +78,17 @@ export const newsItems: NewsItem[] = [
     category: "メディア掲載",
   },
   {
-    date: "2025年8月14日",
+    date: "2024年9月18日",
+    title: "「文化時報」に住職就任・復興ツーリズムの記事が掲載されました",
+    slug: "bunka-jiho-jushoku-2024",
+    externalUrl: "https://note.com/bunkajiho/n/n476ef40d48ef",
+    category: "メディア掲載",
+  },
+  {
+    date: "2024年8月14日",
     title: "復興の灯 キャンドルナイト＆スカイランタンを開催しました",
-    slug: "candle-night-2025",
+    slug: "candle-night-2024",
+    externalUrl: "https://note.com/nice_godwit9538/n/n798dfb3a9ca0",
   },
   {
     date: "2024年",
@@ -66,27 +96,5 @@ export const newsItems: NewsItem[] = [
     slug: "asoview-2024",
     externalUrl: "https://www.asoview.com/base/163446/",
     category: "メディア掲載",
-  },
-  {
-    date: "2024年8月14日",
-    title: "復興の灯 キャンドルナイト＆スカイランタンを開催しました",
-    slug: "candle-night-2024",
-  },
-  {
-    date: "2026年4月1日",
-    title: "ホームページを開設しました",
-    slug: "website-launch",
-  },
-  {
-    date: "2026年4月1日",
-    title: "TikTokを始めました",
-    slug: "tiktok-start",
-    externalUrl: "https://www.tiktok.com/@noto_morimoto",
-  },
-  {
-    date: "2026年4月1日",
-    title: "Instagramを始めました",
-    slug: "instagram-start",
-    externalUrl: "https://www.instagram.com/noto_morimoto/reels/",
   },
 ];
